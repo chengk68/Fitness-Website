@@ -1,3 +1,4 @@
 #! /bin/sh
-./PB/manage.py runserver
-
+cd PB
+source runserver.sh
+cd ..
