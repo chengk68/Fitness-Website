@@ -1,0 +1,16 @@
+img,button {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;	
+}
+
+button {
+	justify-content: center;
+	border: none;
+	background: #2E8BC0;
+	color: aliceblue;
+}
+
+form {
+	margin-top: 30px;
+}

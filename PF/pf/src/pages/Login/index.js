@@ -1,14 +1,15 @@
-import { Avatar, Button, Grid, Link, Paper, TextField, Typography } from "@mui/material";
+import { Avatar, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import React from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import "./style.css";
+import {Link} from "react-router-dom";
 
 function Login() {
   const pstyle = {
     padding: 20,
-    height: "70vh",
+    height: "60vh",
     width: 300,
-    margin: "20px auto",
+    margin: "100px auto"
   };
   const avatarStyle = { backgroundColor: "#2E8BC0" };
   const tstyle={margin:'10px 0'}
@@ -41,7 +42,7 @@ function Login() {
         </Button>
 		<Typography style={tstyle}>
 			Do you have an account ?
-			<Link href="#">
+			<Link to="/signup">
 				Sign Up
 			</Link>
 		</Typography>
