@@ -1,10 +1,21 @@
-import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
+import { Alert, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
+import signupservice from "../../api/signupservice";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
+  const navigate = useNavigate();
+  const [alert, setAlert] = useState(false)
+  const [alertContent, setAlertContent] = useState("")
   const fileInputRef = useRef();
   const paperStyle = {
     padding: "30px 20px",
@@ -12,7 +23,38 @@ function Signup() {
     margin: "20px auto",
     height: "80vh",
   };
-  const tstyle = { margin: "50px 0" };
+  const tstyle = { margin: "20px 0" };
+
+  async function handleSubmit(
+    username,
+    password,
+    email,
+    avatar,
+    phone,
+    first_name,
+    last_name
+  ) {
+    signupservice(
+      username,
+      password,
+      email,
+      avatar,
+      phone,
+      first_name,
+      last_name
+    ).then((success) => {
+      if (success) {
+        console.log("success");
+        navigate("/")
+      } else {
+        console.log("failed")
+        setAlert(true)
+        setAlertContent("Something goes wrong!")
+      }
+    }).catch((e) => {
+      console.log(e)
+    })
+  }
 
   useEffect(() => {
     if (image) {
@@ -67,36 +109,66 @@ function Signup() {
             label="username"
             variant="standard"
             placeholder="username"
+            value={username}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            required
           />
           <TextField
             fullWidth
             label="password"
             variant="standard"
             placeholder="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            required
           />
           <TextField
             fullWidth
             label="email"
             variant="standard"
             placeholder="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            required
           />
           <TextField
             fullWidth
             label="first name"
             variant="standard"
             placeholder="first name"
+            value={firstName}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+            }}
+            required
           />
           <TextField
             fullWidth
             label="last name"
             variant="standard"
             placeholder="last name"
+            value={lastName}
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
+            required
           />
           <TextField
             fullWidth
             label="phone"
             variant="standard"
             placeholder="phone"
+            value={phone}
+            onChange={(e) => {
+              setPhone(e.target.value);
+            }}
+            required
           />
           <Button
             type="submit"
@@ -104,10 +176,23 @@ function Signup() {
             color="primary"
             fullWidth
             style={tstyle}
+            onClick={(e) => {
+              e.preventDefault()
+              handleSubmit(
+                username,
+                password,
+                email,
+                image,
+                phone,
+                firstName,
+                lastName
+              );
+            }}
           >
             Sign Up
           </Button>
         </form>
+        {alert ? <Alert severity="error">{alertContent}</Alert>: <></>}
       </Paper>
     </Grid>
   );
