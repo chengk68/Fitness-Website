@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginservice from "../../api/loginservice";
 
 function Login() {
@@ -18,17 +18,22 @@ function Login() {
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState(false);
   const [alertContent, setAlertContent] = useState("");
+  const navigate = useNavigate()
   async function handleSubmit(username, password) {
     loginservice(username, password)
       .then((response) => {
-        if (response.status !== 201) {
+        if (response.status !== 200) {
           setAlert(true);
           setAlertContent("Something goes wrong");
-        }
-        return response.json();
+        } else {
+          return response.json();
+        }     
       })
       .then((result) => {
-        localStorage.setItem("token", result.access)
+        if (result) {
+          localStorage.setItem("token", result.access)
+          navigate('home')
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -90,7 +95,7 @@ function Login() {
           Log In
         </Button>
         <Typography style={tstyle}>
-          Do you have an account ?<Link to="/signup">Sign Up</Link>
+          Do you have an account ?<Link to="signup">Sign Up</Link>
         </Typography>
         {alert ? <Alert severity="error">{alertContent}</Alert> : <></>}
       </Paper>
