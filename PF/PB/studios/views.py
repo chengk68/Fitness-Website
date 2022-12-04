@@ -81,7 +81,6 @@ class StudioList(generics.ListAPIView):
 
         queryset = self.get_queryset()
         paramsnew = {p + '__contains': params[p][0] for p in params if p in ['name', 'address']}
-        print(queryset)
         queries = []
         if 'coach' in params:
             coaches = {'classes__coach__in': params['coach'][0].split(',')}
@@ -108,12 +107,8 @@ class StudioList(generics.ListAPIView):
 
         try:
             location = params['loc'][0].strip('()').split(',')
-            print(location)
-            print('hey')
             lat = float(location[0])
             long = float(location[1])
-            print(lat)
-            print(long)
         except KeyError:
             lat = 0
             long = 0
@@ -122,7 +117,6 @@ class StudioList(generics.ListAPIView):
 
         for q in queries:
             queryset = queryset.filter(id__in=q)
-        print(paramsnew)
         queryset = queryset.filter(
             **paramsnew).alias(
             distance=ExpressionWrapper((F('lat') - lat) ** 2 + (F('lon') - long) ** 2,
