@@ -8,13 +8,16 @@ function Layout() {
 	  <AppBar position="static">
 		<Toolbar>
 			<Typography variant="h6" style={{flexGrow: 1}} >
-				AppBar
+				Toronto Fitness Club
 			</Typography>
 			<IconButton color="inherit" size="small" sx={{width: "70px", height: "70px"}}>
 				<Link to="/home" style={{'textDecoration': 'none', color: "white"}}>Home</Link>
 			</IconButton>
 			<IconButton color="inherit" size="small" sx={{width: "70px", height: "70px"}}>
 				<Link to="/studio" style={{'textDecoration': 'none', color: "white"}}>Studio</Link>
+			</IconButton>
+			<IconButton color="inherit" size="small" sx={{width: "120px", height: "70px"}}>
+				<Link to="/subscription" style={{'textDecoration': 'none', color: "white"}}>Subscription</Link>
 			</IconButton>
 		</Toolbar>
 	  </AppBar>
