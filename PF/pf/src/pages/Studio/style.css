@@ -1,0 +1,15 @@
+.map-container {
+    width: 80%;
+    height: 50vh;
+    margin: auto;
+}
+ 
+.page-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    border-radius: 0px;
+}

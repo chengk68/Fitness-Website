@@ -13,9 +13,16 @@ from classes.models import Recurrence
 
 
 class Paginator(PageNumberPagination):
-    page_size = 10
+    page_size = 5
     page_size_query_param = 'page_size'
 
+    def get_paginated_response(self, data):
+        return Response({
+            'num_pages': self.page.paginator.num_pages,
+            'has_next': self.page.has_next(),
+            'has_previous': self.page.has_previous(),
+            'results': data
+        })
 
 # Create your views here.
 class StudioScheduleList(generics.ListAPIView):
@@ -67,11 +74,14 @@ class StudioList(generics.ListAPIView):
 
     def list(self, request, *args, **kwargs):
         params = dict(request.GET)
-        if 'loc' in params:
-            params.pop('loc')
+        for p in ['loc', 'coach', 'class', 'amenities', 'name', 'address']:
+            if p in params:
+                if params[p][0] == '' or params[p][0] == '(,)':
+                    params.pop(p)
+
         queryset = self.get_queryset()
         paramsnew = {p + '__contains': params[p][0] for p in params if p in ['name', 'address']}
-
+        print(queryset)
         queries = []
         if 'coach' in params:
             coaches = {'classes__coach__in': params['coach'][0].split(',')}
@@ -97,10 +107,14 @@ class StudioList(generics.ListAPIView):
             queries.append(queryset_am)
 
         try:
-            location = request.GET.get('loc').strip('()').split(',')
-            lat = int(location[0])
-            long = int(location[1])
-        except AttributeError:
+            location = params['loc'][0].strip('()').split(',')
+            print(location)
+            print('hey')
+            lat = float(location[0])
+            long = float(location[1])
+            print(lat)
+            print(long)
+        except KeyError:
             lat = 0
             long = 0
         except ValueError:
@@ -108,7 +122,7 @@ class StudioList(generics.ListAPIView):
 
         for q in queries:
             queryset = queryset.filter(id__in=q)
-
+        print(paramsnew)
         queryset = queryset.filter(
             **paramsnew).alias(
             distance=ExpressionWrapper((F('lat') - lat) ** 2 + (F('lon') - long) ** 2,
