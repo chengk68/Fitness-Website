@@ -2,6 +2,7 @@ import { Button, Card, CardContent, CardHeader, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom/dist";
 
 function Subscription() {
   const config = {
@@ -11,6 +12,7 @@ function Subscription() {
   const paymentHistoryURL =
     "http://localhost:8000/subscriptions/paymentHistory/";
   const cancelURL = "http://localhost:8000/subscriptions/cancel/";
+  const navigate = useNavigate();
   const [futurePayment, setFuturePayment] = useState({});
   const [paymentHistory, setPaymentHistory] = useState([]);
   const [showFuturePayment, setShowFuturePayment] = useState(false);
@@ -31,8 +33,8 @@ function Subscription() {
     axios
       .get(paymentHistoryURL, config)
       .then((result) => {
-        console.log(result.data.results);
         setPaymentHistory(result.data.results);
+        console.log(paymentHistory)
         setShowHistory(true);
       })
       .catch((e) => {
@@ -52,13 +54,18 @@ function Subscription() {
     <Grid container alignItems="stretch" spacing={3}>
       <Grid className="left-pane" item md={4} xs={12}>
         <Card style={{ margin: "30px" }}>
-          <Button style={{ margin: "30px", width: "85%" }} variant="contained">
+          <Button
+            style={{ margin: "30px", width: "85%" }}
+            variant="contained"
+            onClick={()=>{ navigate('/subscribe')}}
+          >
             Subscribe
           </Button>
           <Button
             style={{ margin: "30px", width: "85%" }}
             variant="contained"
             color="success"
+            onClick={()=> {navigate('/cardInfo')}}
           >
             Card Information
           </Button>
