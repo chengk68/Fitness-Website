@@ -113,6 +113,7 @@ function Home() {
           </Grid>
           <Grid className="right-pane" item md={5} xs={12} align="center">
             <img
+              id="avatar2"
               src={avatar}
               style={{ objectFit: "cover", borderRadius: "50%" }}
               alt="avatar"

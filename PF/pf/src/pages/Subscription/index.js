@@ -112,7 +112,7 @@ function Subscription() {
           })
         ) : (
           <Card style={{ margin: "30px" }}>
-            <CardContent>There are no paymentHistory</CardContent>
+            <CardContent>There are no payment history</CardContent>
           </Card>
         )}
       </Grid>

@@ -79,7 +79,7 @@ function Signup() {
         </Grid>
         <form align="center">
           {preview ? (
-            <img src={preview} style={{ objectFit: "cover" }} alt="avatar" />
+            <img id="avatar" src={preview} style={{ objectFit: "cover" }} alt="avatar" />
           ) : (
             <button
               onClick={(event) => {
