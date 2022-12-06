@@ -1,0 +1,19 @@
+.schedule {
+    margin: auto;
+    text-align: center;
+}
+
+.table {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80% !important;
+}
+
+thead {
+    text-align: center;
+}
+
+tbody {
+    text-align: left;
+    padding-left: 2cm;
+}

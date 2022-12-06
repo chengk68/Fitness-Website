@@ -7,6 +7,8 @@ import Subscription from "./pages/Subscription";
 import Subscribe from "./pages/Subscribe";
 import CardInfo from "./pages/CardInfo";
 import Payment from "./pages/Payment";
+import MySchedule from "./pages/MySchedule";
+import MyHistory from "./pages/MyHistory";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route path="home" element={<Home />} />
           <Route path="studio" element={<Studio />} />
           <Route path="subscription" element={<Subscription />} />
+          <Route path="myschedule" element={<MySchedule />} />
+          <Route path="myhistory" element={<MyHistory />} />
           <Route path="subscribe" element={<Subscribe />} />
           <Route path="cardInfo" element={<CardInfo />} />
           <Route path="payment/:id" element={<Payment />} />

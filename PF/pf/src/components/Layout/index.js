@@ -19,6 +19,12 @@ function Layout() {
 			<IconButton color="inherit" size="small" sx={{width: "120px", height: "70px"}}>
 				<Link to="/subscription" style={{'textDecoration': 'none', color: "white"}}>Subscription</Link>
 			</IconButton>
+			<IconButton color="inherit" size="small" sx={{width: "120px", height: "70px"}}>
+				<Link to="/MySchedule" style={{'textDecoration': 'none', color: "white"}}>MySchedule</Link>
+			</IconButton>
+			<IconButton color="inherit" size="small" sx={{width: "120px", height: "70px"}}>
+				<Link to="/MyHistory" style={{'textDecoration': 'none', color: "white"}}>MyHistory</Link>
+			</IconButton>
 		</Toolbar>
 	  </AppBar>
 	  <Outlet />
