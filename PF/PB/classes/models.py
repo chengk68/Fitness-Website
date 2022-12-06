@@ -119,7 +119,8 @@ class Enrollment(models.Model):
 class CustomSchedule(models.Model):
     customid = models.CharField(max_length=200, null=True)
     customname = models.CharField(max_length=200, null=True)
-    customtime = models.CharField(max_length=200, null=True)
+    customstart = models.CharField(max_length=200, null=True)
+    customend = models.CharField(max_length=200, null=True)
     customisactive = models.CharField(max_length=200, null=True)
     customstatus = models.CharField(max_length=200, null=True)
 

@@ -12,7 +12,7 @@ from rest_framework.pagination import PageNumberPagination
 
 
 class Paginator(PageNumberPagination):
-    page_size = 10
+    page_size = 5
     page_size_query_param = 'page_size'
 
 
@@ -249,8 +249,8 @@ class myschedule(generics.GenericAPIView):
                         else:
                             iscancel = "Normal"
 
-                        CustomSchedule.objects.create(customid=str(user.enrollrecurrence.id), customname=classname,
-                                                      customtime=combine, customisactive=active, customstatus=iscancel)
+                        CustomSchedule.objects.create(customid=str(user.enrollrecurrence.id), customname=classname, customstart=starttime, customend=endtime
+                                                    , customisactive=active, customstatus=iscancel)
 
             queryset = CustomSchedule.objects.all()
             queryset = queryset.order_by('id')
@@ -301,8 +301,8 @@ class MyHistory(generics.GenericAPIView):
                         else:
                             iscancel = "Normal"
 
-                        CustomSchedule.objects.create(customid=str(user.enrollrecurrence.id), customname=classname,
-                                                      customtime=combine, customisactive=active, customstatus=iscancel)
+                        CustomSchedule.objects.create(customid=str(user.enrollrecurrence.id), customname=classname, customstart=starttime, customend=endtime
+                                                    , customisactive=active, customstatus=iscancel)
 
             queryset = CustomSchedule.objects.all()
             queryset = queryset.order_by('id')
