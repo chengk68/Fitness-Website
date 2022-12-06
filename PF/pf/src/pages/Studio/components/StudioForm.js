@@ -2,21 +2,26 @@ import React, { useState } from 'react';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import './StudioForm.css'
+// import './StudioForm.css'
 
 
 
 function StudioForm(props) {
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [coaches, setCoaches] = useState("");
-    const [classes, setClasses] = useState("");
-    const [amenities, setAmenities] = useState("");
+    const searches = props.searches
+    const [name, setName] = useState(searches["name"]);
+    const [address, setAddress] = useState(searches["address"]);
+    const [coaches, setCoaches] = useState(searches["coaches"]);
+    const [classes, setClasses] = useState(searches["classes"]);
+    const [amenities, setAmenities] = useState(searches["amenities"]);
 
     // useEffect(() => {
     //     props.querySetter({'name': name, 'address': address, 'coaches': coaches, 'classes': classes, 'amenities': amenities});
     //   }, [name, address, coaches, classes, amenities]);
-
+    // setName(searches["name"])
+    // setAddress(searches["address"])
+    // setCoaches(searches["coaches"])
+    // setClasses(searches["classes"])
+    // setAmenities(searches["amenities"])
     return (
         <>
         <div className='studio-form-container'>
@@ -26,7 +31,7 @@ function StudioForm(props) {
                 <Form.Control value={name} 
                     onChange={e => setName(e.target.value)} aria-label="name" />
 
-                <Button variant="outline-secondary" onClick={() => setName('')}>
+                <Button variant="outline-danger" size="sm" onClick={() => setName('')}>
                     Clear
                 </Button>
             </InputGroup>
@@ -36,7 +41,7 @@ function StudioForm(props) {
                 <Form.Control value={address} 
                     onChange={e => setAddress(e.target.value)} aria-label="address" />
 
-                <Button variant="outline-secondary" onClick={() => setAddress('')}>
+                <Button variant="outline-danger" size="sm" onClick={() => setAddress('')}>
                     Clear
                 </Button>
             </InputGroup>
@@ -46,7 +51,7 @@ function StudioForm(props) {
                 <Form.Control value={coaches} 
                     onChange={e => setCoaches(e.target.value)} aria-label="coaches" />
 
-                <Button variant="outline-secondary" onClick={() => setCoaches('')}>
+                <Button variant="outline-danger" size="sm" onClick={() => setCoaches('')}>
                     Clear
                 </Button>
             </InputGroup>
@@ -56,7 +61,7 @@ function StudioForm(props) {
                 <Form.Control value={classes} 
                     onChange={e => setClasses(e.target.value)} aria-label="classes" />
 
-                <Button variant="outline-secondary" onClick={() => setClasses('')}>
+                <Button variant="outline-danger" size="sm" onClick={() => setClasses('')}>
                     Clear
                 </Button>
             </InputGroup>
@@ -66,7 +71,7 @@ function StudioForm(props) {
                 <Form.Control value={amenities} 
                     onChange={e => setAmenities(e.target.value)} aria-label="amenities" />
 
-                <Button variant="outline-secondary" onClick={() => setAmenities('')}>
+                <Button variant="outline-danger" size="sm" onClick={() => setAmenities('')}>
                     Clear
                 </Button>
             </InputGroup>
