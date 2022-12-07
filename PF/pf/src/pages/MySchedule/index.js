@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import axios from 'axios'
-import Button from 'react-bootstrap/Button';
 import MyScheduleList from './components/MyScheduleList.js'
 import './style.css'
+import Table from "react-bootstrap/Table";
+import Drop from "./components/Drop";
 
 
 function MySchedule() {
@@ -12,6 +13,7 @@ function MySchedule() {
     const [page, setPage] = useState(1);
     const [next, setNext ]= useState(false)
     const [previous, setPrevious] = useState(false)
+    const [refresh, setRefresh] = useState(1)
     let config = {
             headers:{
                 'Authorization': "Bearer " + localStorage.getItem("token")
@@ -22,6 +24,7 @@ function MySchedule() {
         const url = `http://localhost:8000/classes/myschedule/?page=${page}`;
 
         axios.get(url,config).then((res) => {
+            console.log("here")
             const {data} = res;
             setSchedule(data['results']);
             if (data['next'] !== null){
@@ -36,9 +39,8 @@ function MySchedule() {
             }
 
         });
-    }, [page]);
+    }, [page, refresh]);
 
-    console.log(next)
 
     return (
         <>
@@ -49,11 +51,13 @@ function MySchedule() {
                 crossOrigin="anonymous"
             />
 
-            <MyScheduleList myschedulelist={schedule}/>
+
+            <MyScheduleList myschedulelist={[schedule,config]}/>
             <div className="button-page">
                 <button  onClick={() => setPage(page - 1) }  disabled={previous === false}>Previous</button>
                 <button  onClick={() => setPage(page + 1)} disabled={next === false}>Next</button>
             </div>
+             <button onClick={() => setRefresh(refresh + 1)}>Refresh</button>
         </>
     )
 }

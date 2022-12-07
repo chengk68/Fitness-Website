@@ -123,6 +123,7 @@ class CustomSchedule(models.Model):
     customend = models.CharField(max_length=200, null=True)
     customisactive = models.CharField(max_length=200, null=True)
     customstatus = models.CharField(max_length=200, null=True)
+    customclass = models.CharField(max_length=200, null=True)
 
 
 class CustomEnrollDrop(models.Model):

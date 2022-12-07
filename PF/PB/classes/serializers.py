@@ -15,10 +15,11 @@ class CustomScheduleSerializer(serializers.ModelSerializer):
     endtime = serializers.CharField(source='customend')
     is_active = serializers.CharField(source='customisactive')
     status = serializers.CharField(source='customstatus')
+    class_id = serializers.CharField(source='customclass')
 
     class Meta:
         model = CustomSchedule
-        fields = ['recurrence_id', 'class_name', 'starttime', 'endtime', 'is_active', 'status']
+        fields = ['recurrence_id', 'class_name', 'starttime', 'endtime', 'is_active', 'status', 'class_id']
 
 class CustomEnrollDropSerializer(serializers.ModelSerializer):
     recurrence_id = serializers.CharField(source='cid')

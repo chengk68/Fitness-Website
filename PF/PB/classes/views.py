@@ -247,10 +247,10 @@ class myschedule(generics.GenericAPIView):
                         if user.enrollrecurrence.cancelled:
                             iscancel = "Cancelled"
                         else:
-                            iscancel = "Normal"
+                            iscancel = "Ongoing"
 
                         CustomSchedule.objects.create(customid=str(user.enrollrecurrence.id), customname=classname, customstart=starttime, customend=endtime
-                                                    , customisactive=active, customstatus=iscancel)
+                                                    , customisactive=active, customstatus=iscancel, customclass=user.enrollrecurrence.targetclass.id)
 
             queryset = CustomSchedule.objects.all()
             queryset = queryset.order_by('id')
@@ -299,7 +299,7 @@ class MyHistory(generics.GenericAPIView):
                         if user.enrollrecurrence.cancelled:
                             iscancel = "Cancelled"
                         else:
-                            iscancel = "Normal"
+                            iscancel = "Ongoing"
 
                         CustomSchedule.objects.create(customid=str(user.enrollrecurrence.id), customname=classname, customstart=starttime, customend=endtime
                                                     , customisactive=active, customstatus=iscancel)
