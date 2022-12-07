@@ -67,7 +67,7 @@ body {
 .table {
     margin-left: 10%;
     margin-right: 10%;
-    width: 80% !important;
+    width: 30% !important;
 }
 
 thead {
@@ -77,4 +77,28 @@ thead {
 tbody {
     text-align: left;
     padding-left: 2cm;
+}
+
+.studio-image {
+    max-width: 50%;
+    max-height: 300px;
+}
+
+div {
+    margin-bottom: 5%;
+}
+
+.ms-2 {
+    max-height: 5%;
+    margin-bottom: auto;
+}
+
+table {
+    max-width: 50%;
+    margin: auto;
+}
+
+ul {
+    max-width: 20%;
+    margin: auto;
 }
