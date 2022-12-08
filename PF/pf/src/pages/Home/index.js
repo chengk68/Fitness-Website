@@ -2,8 +2,10 @@ import { Grid, Paper, TextField, Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate()
   const pstyle = {
     padding: 20,
     height: "60vh",
@@ -33,6 +35,8 @@ function Home() {
       setEmail(result.data.user.email);
       setFirst_name(result.data.user.first_name);
       setLast_name(result.data.user.last_name);
+    }).catch(error => {
+      navigate('/')
     });
   }, []);
 

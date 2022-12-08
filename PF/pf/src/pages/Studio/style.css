@@ -40,11 +40,6 @@ body {
     margin: auto;
 }
 
-.btn-sm {
-    max-height: 5ch;
-    max-width: 7ch;
-}
-
 .btn {
     max-height: 7ch;
     max-width: 10ch;

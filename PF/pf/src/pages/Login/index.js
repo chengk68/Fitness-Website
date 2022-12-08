@@ -95,7 +95,7 @@ function Login() {
           Log In
         </Button>
         <Typography style={tstyle}>
-          Do you have an account ?<Link to="signup">Sign Up</Link>
+          Do you have an account? <Link to="signup">Sign Up</Link>
         </Typography>
         {alert ? <Alert severity="error">{alertContent}</Alert> : <></>}
       </Paper>

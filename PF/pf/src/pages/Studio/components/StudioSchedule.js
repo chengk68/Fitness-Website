@@ -42,36 +42,6 @@ function StudioSchedule(props) {
 
   return (
     <>
-    {/* <div className='schedule-nav-container'>
-      <Table striped bordered class='schedule-table'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Coach</th>
-            <th>Availability</th>
-            <th>Enroll</th>
-            <th>Enroll in All</th>
-          </tr>
-        </thead>
-        <tbody>
-          {classes.map(c => (<>
-          <tr key={c["id"]}>
-            <td>{c["targetclass"]["class_name"]}</td>
-            <td>{c["targetclass"]["description"]}</td>
-            <td>{c["date"]}</td>
-            <td>{c["targetclass"]["start_time"]} - {c["targetclass"]["end_time"]}</td>
-            <td>{c["targetclass"]["coach"]}</td>
-            <td>{c["capacity"]} / {c["targetclass"]["max_capacity"]}</td>
-            <td><Button>Enroll</Button></td>
-            <td><Button>Enroll in all</Button></td>
-          </tr>
-          </>))}
-        </tbody>
-      </Table>
-    </div> */}
     <div className='schedule-list'>
     <Tab.Container id="test" defaultActiveKey={"#link" + min_class}>
         <Row>

@@ -97,6 +97,7 @@ function MySchedule() {
     }
     else{
         return (
+            
             <>
                 <br/>
 
@@ -105,9 +106,7 @@ function MySchedule() {
                 </div>
 
                 <div className="redirect">
-                     <BootstrapButton variant="contained" onClick={() => navigate('/subscription')} >
-                        Subscription page
-                    </BootstrapButton>
+                     <BootstrapButton variant="contained" onClick={() => navigate('/subscription')} >Subscriptions</BootstrapButton>
 
                 </div>
 
@@ -128,6 +127,9 @@ const BootstrapButton = styled(Button)({
   lineHeight: 1,
   backgroundColor: '#0063cc',
   borderColor: '#0063cc',
+  maxWidth: "200px",
+  maxHeight: "150px",
+  height: "150px",
   fontFamily: [
     '-apple-system',
     'BlinkMacSystemFont',
