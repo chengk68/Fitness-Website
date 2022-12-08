@@ -1,10 +1,12 @@
 
-.button-page{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.button{
+    position: relative;
+    left: 1340px;
+}
+.error{
+    text-align: center;
 }
 
-img {
-    border-radius: 0px;
+.redirect{
+    text-align: center;
 }
