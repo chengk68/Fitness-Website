@@ -105,6 +105,7 @@ class EnrollAll(generics.GenericAPIView):
                 Enrollment.objects.create(enrolluser=request.user, enrollrecurrence=r)
                 r.capacity = r.capacity - 1
                 r.save()
+                canenroll = True
 
         queryset = CustomEnrollDrop.objects.all()
         queryset = queryset.order_by('id')
