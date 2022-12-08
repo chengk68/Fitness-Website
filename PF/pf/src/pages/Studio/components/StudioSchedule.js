@@ -7,7 +7,8 @@ import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ScheduleForm from './ScheduleForm';
-
+import Enrollc from './Enroll';
+import EnrollAll from './EnrollAll';
 function StudioSchedule(props) {
   const studioId = props.studioId;
   const hasNext = useRef(false);
@@ -102,11 +103,11 @@ function StudioSchedule(props) {
                       <tbody>
                         <tr>
                           <td>Enroll in this class:</td>
-                          <td><Button>Enroll</Button></td>
+                          <td><Button onClick={() => Enrollc(c['id'])}>Enroll</Button></td>
                         </tr>
                         <tr>
                           <td>Enroll all future occurences of this class: :</td>
-                          <td><Button>Enroll</Button></td>
+                          <td><Button onClick={() => EnrollAll(c['targetclass']['class_id'])}>Enroll</Button></td>
                         </tr>
                       </tbody>
                     </Table>

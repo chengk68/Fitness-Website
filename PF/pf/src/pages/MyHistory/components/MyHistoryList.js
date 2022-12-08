@@ -6,7 +6,6 @@ function MyHistoryList(props) {
     return (
         <>
         <div className='history'>
-            <h1> My History</h1>
             <Table striped bordered>
                 <thead>
                     <tr>

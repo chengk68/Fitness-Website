@@ -73,7 +73,7 @@ function MySchedule() {
             </div>
             <br/>
             <br/>
-            <div class="button">
+            <div className="button">
                 <Button class="Primary" size="sm" onClick={() => setRefresh(refresh + 1)} >Refresh</Button>{' '}
                 <Button  class="Primary" size="sm" onClick={() => setPage(page - 1) }  disabled={previous === false}>Previous</Button>{' '}
                 <Button class="Primary" size="sm" onClick={() => setPage(page + 1) }  disabled={next === false}>Next</Button>{' '}

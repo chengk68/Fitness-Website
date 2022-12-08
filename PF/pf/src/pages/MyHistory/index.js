@@ -3,7 +3,8 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios'
 import MyHistoryList from './components/MyHistoryList.js'
 import './style.css'
-
+import {styled} from "@mui/material/styles";
+import Button from 'react-bootstrap/Button';
 
 function MyHistory() {
 
@@ -47,12 +48,18 @@ function MyHistory() {
                 integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
                 crossOrigin="anonymous"
             />
-
-            <MyHistoryList myhistorylist={history}/>
-            <div className="button-page">
-                <button  onClick={() => setPage(page - 1) }  disabled={previous === false}>Previous</button>
-                <button  onClick={() => setPage(page + 1)} disabled={next === false}>Next</button>
+            <br/>
+            <div className="history">
+                 <h1>My History</h1>
             </div>
+
+
+             <div className="button">
+                <Button  class="Primary" size="sm" onClick={() => setPage(page - 1) }  disabled={previous === false}>Previous</Button>{' '}
+                <Button class="Primary" size="sm" onClick={() => setPage(page + 1) }  disabled={next === false}>Next</Button>{' '}
+            </div>
+            <MyHistoryList myhistorylist={history}/>
+
         </>
     )
 }
