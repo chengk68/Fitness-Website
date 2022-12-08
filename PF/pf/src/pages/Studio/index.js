@@ -18,7 +18,6 @@ function Studio() {
   const [longitude, setLongitude] = useState(79.3807);
   const [curr, setCurr] = useState(0);
 
-    
   useEffect(() => {
     const { page, filters } = params;
     console.log(page)
@@ -32,6 +31,14 @@ function Studio() {
     });
   }, [params, latitude, longitude]);
 
+  navigator?.geolocation.getCurrentPosition(({coords: {latitude: lat, longitude: lng}}) => {
+    const pos = {lat, lng}
+    console.log(pos)
+    setLatitude(pos["lat"])
+    setLongitude(pos["lng"])
+    console.log(latitude)
+    console.log(longitude)
+  })
   return (
     <>
       <link
@@ -48,6 +55,7 @@ function Studio() {
           <PageButton text='next' onClick={() => setParams({...params, page: params.page + 1})} disabled={!hasNext.current}/>
         </InputGroup>
       </div>
+      <div className="set-location-container"></div>
       <Content curr = {curr}
         setId = {(id) => setCurr(id)}
         setParams = {(params) => setParams(params)}
@@ -76,7 +84,7 @@ function Content(props) {
   else {
     return (
       <>
-      <StudioDetails studioId={props.curr}/>
+      <StudioDetails studioId={props.curr} lat={props.latitude} lng={props.longitude}/>
       </>
     )
   }

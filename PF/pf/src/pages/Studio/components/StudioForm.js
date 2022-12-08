@@ -29,7 +29,9 @@ function StudioForm(props) {
             <InputGroup size='sm' className="mb-3">
                 <InputGroup.Text id="name-label">Studio name</InputGroup.Text>
                 <Form.Control value={name} 
-                    onChange={e => setName(e.target.value)} aria-label="name" />
+                    onChange={e => setName(e.target.value)} 
+                    aria-label="name"
+                    placeholder="Name" />
 
                 <Button variant="outline-danger" size="sm" onClick={() => setName('')}>
                     Clear
@@ -39,7 +41,9 @@ function StudioForm(props) {
             <InputGroup size='sm' className="mb-3">
                 <InputGroup.Text id="address-label">Address</InputGroup.Text>
                 <Form.Control value={address} 
-                    onChange={e => setAddress(e.target.value)} aria-label="address" />
+                    onChange={e => setAddress(e.target.value)} 
+                    aria-label="address" 
+                    placeholder="Address"/>
 
                 <Button variant="outline-danger" size="sm" onClick={() => setAddress('')}>
                     Clear
@@ -47,9 +51,10 @@ function StudioForm(props) {
             </InputGroup>
 
             <InputGroup size='sm' className="mb-3">
-                <InputGroup.Text id="coach-label">Coaches (separated by commas)</InputGroup.Text>
+                <InputGroup.Text id="coach-label">Coaches</InputGroup.Text>
                 <Form.Control value={coaches} 
-                    onChange={e => setCoaches(e.target.value)} aria-label="coaches" />
+                    onChange={e => setCoaches(e.target.value)} aria-label="coaches" 
+                    placeholder="Coach1,Coach2,..."/>
 
                 <Button variant="outline-danger" size="sm" onClick={() => setCoaches('')}>
                     Clear
@@ -57,9 +62,11 @@ function StudioForm(props) {
             </InputGroup>
 
             <InputGroup size='sm'className="mb-3">
-                <InputGroup.Text id="classes-label">Class names(separated by commas)</InputGroup.Text>
+                <InputGroup.Text id="classes-label">Class names</InputGroup.Text>
                 <Form.Control value={classes} 
-                    onChange={e => setClasses(e.target.value)} aria-label="classes" />
+                    onChange={e => setClasses(e.target.value)} aria-label="classes" 
+                    placeholder="Class1,Class2,..."/>
+                    
 
                 <Button variant="outline-danger" size="sm" onClick={() => setClasses('')}>
                     Clear
@@ -67,9 +74,10 @@ function StudioForm(props) {
             </InputGroup>
 
             <InputGroup size='sm' className="mb-3">
-                <InputGroup.Text id="amenities-label">Amenities (separated by commas)</InputGroup.Text>
+                <InputGroup.Text id="amenities-label">Amenities</InputGroup.Text>
                 <Form.Control value={amenities} 
-                    onChange={e => setAmenities(e.target.value)} aria-label="amenities" />
+                    onChange={e => setAmenities(e.target.value)} aria-label="amenities" 
+                    placeholder="Amenity1,Amenity2,..."/>
 
                 <Button variant="outline-danger" size="sm" onClick={() => setAmenities('')}>
                     Clear

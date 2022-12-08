@@ -35,6 +35,10 @@ class StudioScheduleList(generics.ListAPIView):
         queryset = self.get_queryset().filter(
             targetclass__studio__id=kwargs['id']).filter(
             targetclass__cancel=False).filter(cancelled=False)
+        for p in ['name', 'coach', 'start_date', 'end_date', 'start_time', 'end_time']:
+            if p in params:
+                if params[p][0] == '':
+                    params.pop(p)
 
         paramnames = {'targetclass__' + p + '__in': params[p][0].split(',') for p in params if p in ['name', 'coach']}
         if paramnames:

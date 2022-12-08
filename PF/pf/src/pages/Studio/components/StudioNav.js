@@ -1,5 +1,4 @@
 import ListGroup from 'react-bootstrap/ListGroup';
-// import './StudioList.css'
 
 function StudioNav(props) {
   const data = props.studioList

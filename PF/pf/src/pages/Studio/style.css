@@ -65,8 +65,7 @@ body {
 }
 
 .table {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: auto !important;
     width: 30% !important;
 }
 
@@ -85,7 +84,7 @@ tbody {
 }
 
 div {
-    margin-bottom: 5%;
+    margin-bottom: 1rem;
 }
 
 .ms-2 {
@@ -98,7 +97,28 @@ table {
     margin: auto;
 }
 
-ul {
+.class-list {
     max-width: 20%;
     margin: auto;
+}
+
+.schedule-list {
+    max-width: 90%;
+    margin: auto;
+}
+
+.react-time-picker {
+    max-height: 40px !important;
+}
+
+.react-date-picker {
+    max-height: 40px !important;
+}
+
+.react-date-picker * {
+    height: auto !important;
+}
+
+.react-time-picker * {
+    height: auto !important;
 }

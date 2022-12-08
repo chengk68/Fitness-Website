@@ -1,4 +1,5 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import mm from './blue_MarkerO.png'
 
 
 function StudioMap(props) {
@@ -27,6 +28,7 @@ function Map(props) {
         {props.data.map((info) => (
             <Mark key={info['id']} pos={{lat: parseInt(info['location'].slice(1,-1).split(',')[0]), lng: parseInt(info['location'].slice(1,-1).split(',')[1])}} />
         ))}
+        <Marker position={{lat: props.lat, lng: props.lng}} icon={mm} />
         </GoogleMap>
     );
 }

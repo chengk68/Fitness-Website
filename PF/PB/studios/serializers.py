@@ -11,12 +11,23 @@ class ClassesSerializer(serializers.ModelSerializer):
         model = Classes
         fields = ['id', 'class_name']
 
+class ClassesDetailedSerializer(serializers.ModelSerializer):
+    class_id = serializers.CharField(source='id')
+    class_name = serializers.CharField(source='name')
+    keyword = serializers.StringRelatedField(many=True)
+    max_capacity = serializers.CharField(source='capacity')
+    start_time = serializers.CharField(source='start')
+    end_time = serializers.CharField(source='end')
+
+    class Meta:
+        model = Classes
+        fields = ['class_id', 'class_name', 'description', 'keyword', 'max_capacity', 'start_time', 'end_time', 'coach']
 
 class StudioDetailSerializer(serializers.ModelSerializer):
     images = serializers.StringRelatedField(many=True)
     location = serializers.SerializerMethodField()
     amenities = serializers.StringRelatedField(many=True)
-    classes = ClassesSerializer(many=True)
+    classes = ClassesDetailedSerializer(many=True)
 
     class Meta:
         model = Studio
@@ -41,19 +52,6 @@ class KeywordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Keyword
         fields = ['keywords']
-
-
-class ClassesDetailedSerializer(serializers.ModelSerializer):
-    class_id = serializers.CharField(source='id')
-    keyword = serializers.StringRelatedField(many=True)
-    max_capacity = serializers.CharField(source='capacity')
-    start_time = serializers.CharField(source='start')
-    end_time = serializers.CharField(source='end')
-
-    class Meta:
-        model = Classes
-        fields = ['class_id', 'name', 'description', 'keyword', 'max_capacity', 'start_time', 'end_time', 'coach']
-
 
 class RecurrenceSerializer(serializers.ModelSerializer):
     targetclass = ClassesDetailedSerializer()
