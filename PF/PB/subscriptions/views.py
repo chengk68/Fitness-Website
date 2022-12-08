@@ -9,7 +9,8 @@ from subscriptions.serializers import PaymentSerializer, HistorySerializer, Card
 from subscriptions.models import PaymentHistory, CardInfo, SubscriptionPlan, FuturePayment
 from django.shortcuts import get_object_or_404
 from rest_framework.pagination import PageNumberPagination
-
+from classes.models import *
+from datetime import *
 
 # Create your views here.
 class Paginator(PageNumberPagination):
@@ -80,6 +81,14 @@ class CancelSubscription(generics.DestroyAPIView):
         p = Profile.objects.get(user=self.request.user)
         p.is_subscribe = False
         p.save()
+        allenroll = Enrollment.objects.all()
+        userenroll = allenroll.filter(enrolluser=self.request.user)
+        for drop in userenroll:
+            if drop.enrollrecurrence.date >= datetime.now().date():
+                drop.is_active = False
+                drop.save()
+                drop.enrollrecurrence.capacity = drop.enrollrecurrence.capacity + 1
+                drop.enrollrecurrence.save()
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)

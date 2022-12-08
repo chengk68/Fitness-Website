@@ -81,10 +81,6 @@ class EnrollAll(generics.GenericAPIView):
         wantclass = Classes.objects.get(id=kwargs['id'])
         recurrence = Recurrence.objects.filter(targetclass=wantclass)
 
-        datenow = datetime.now().date()
-        timenow = datetime.now().time()
-
-        starttime = wantclass.start
         canenroll = False
         for r in recurrence:
             classname = r.targetclass.name
