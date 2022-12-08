@@ -1,12 +1,16 @@
 
 .button{
     position: relative;
-    left: 1050px;
+    left: 1450px;
 }
 .error{
     text-align: center;
 }
 
 .redirect{
+    text-align: center;
+}
+
+.notregister{
     text-align: center;
 }

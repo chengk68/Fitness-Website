@@ -18,6 +18,7 @@ function StudioSchedule(props) {
   const [params, setParams] = useState({page: 1, filters: {name: "", coach: "", start_date: "", end_date: "", start_time: "", end_time: ""}})
   const [classes, setClasses] = useState([]) 
   const [loggedIn, setLoggedIn] = useState(true)
+  const [update, setUpdate] = useState(1)
   var min_class = 0;
 
   useEffect(() => {
@@ -31,7 +32,7 @@ function StudioSchedule(props) {
       hasNext.current = data['has_next'];
       hasPrev.current = data['has_previous'];
     });
-  }, [params, props]);
+  }, [params, props, update]);
   if (classes.length !== 0) {
     console.log(classes)
     min_class = classes[0]['id']
@@ -79,11 +80,11 @@ function StudioSchedule(props) {
                       <tbody>
                         <tr>
                           <td>Enroll in this class:</td>
-                          <td><Button onClick={() => Enroll(c['id'], () => setLoggedIn(false))}>Enroll</Button></td>
+                          <td><Button onClick={() => {Enroll(c['id'], () => setLoggedIn(false)); setUpdate(update + 1)}}>Enroll</Button></td>
                         </tr>
                         <tr>
                           <td>Enroll all future occurences of this class: :</td>
-                          <td><Button onClick={() => EnrollAll(c['targetclass']['class_id'], () => setLoggedIn(false))}>Enroll</Button></td>
+                          <td><Button onClick={() => {EnrollAll(c['targetclass']['class_id'], () => setLoggedIn(false)); setUpdate(update + 1)}}>Enroll</Button></td>
                         </tr>
                       </tbody>
                     </Table>

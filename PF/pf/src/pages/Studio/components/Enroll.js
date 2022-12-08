@@ -9,6 +9,7 @@ function Enroll(recurrence, LoggedIn){
     let data = {}
     const url = `http://localhost:8000/classes/${recurrence}/enroll/`;
     axios.post(url,data,config1).then((res) => {return alert("Success!")
+
      }).catch((error) => {
             if(error.response.status === 403){
                 return alert("You do not have an active subscription. Please subscribe first!!")

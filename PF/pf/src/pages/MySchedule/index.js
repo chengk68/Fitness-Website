@@ -15,6 +15,7 @@ function MySchedule() {
     const [refresh, setRefresh] = useState(1)
     const [subscribe, setSubscribe] = useState(false)
     const [unknown, setUnknown] = useState(false)
+    const [notregister, setNotregister] = useState(false)
     let config = {
             headers:{
                 'Authorization': "Bearer " + localStorage.getItem("token")
@@ -45,13 +46,8 @@ function MySchedule() {
                 console.log('401')
                 navigate('/')
             } else if (error.response.status === 404) {
-                return(
-                    <>
-                        <h1>
-                            You are not registered for any classes
-                        </h1>
-                    </>
-                )
+                setNotregister(true)
+
             }
             else{
                 setUnknown(true)
@@ -59,6 +55,18 @@ function MySchedule() {
         });
     }, [page, refresh]);
 
+    if (notregister === true){
+        return(
+                    <>
+                        <div className="notregister">
+                             <h1>
+                            You are not registered for any classes
+                        </h1>
+                        </div>
+
+                    </>
+                )
+    }
     if (unknown === true){
         return(
             <>
@@ -85,7 +93,6 @@ function MySchedule() {
             <br/>
             <br/>
             <div className="button">
-                <Button className="Primary" size="sm" onClick={() => setRefresh(refresh + 1)} >Refresh</Button>{' '}
                 <Button  className="Primary" size="sm" onClick={() => setPage(page - 1) }  disabled={previous === false}>Previous</Button>{' '}
                 <Button className="Primary" size="sm" onClick={() => setPage(page + 1) }  disabled={next === false}>Next</Button>{' '}
             </div>
