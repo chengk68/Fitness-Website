@@ -25,7 +25,6 @@ function MySchedule() {
         const url = `http://localhost:8000/classes/myschedule/?page=${page}`;
 
         axios.get(url,config).then((res) => {
-            console.log("here")
             const {data} = res;
             setSchedule(data['results']);
             if (data['next'] !== null){

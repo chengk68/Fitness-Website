@@ -42,7 +42,7 @@ class EnrollView(APIView):
                 pass
             elif Enrollment.objects.filter(enrolluser=request.user, enrollrecurrence=recurrence).exists():
                 if Enrollment.objects.get(enrolluser=request.user, enrollrecurrence=recurrence).is_active:
-                    return Response({"Message": "You already enrolled in this class!!"})
+                    return Response({"Message": "You already enrolled in this class!!"}, status=status.HTTP_400_BAD_REQUEST)
                 else:
                     update = Enrollment.objects.get(enrolluser=request.user, enrollrecurrence=recurrence)
                     update.is_active = True
@@ -117,7 +117,7 @@ class EnrollAll(generics.GenericAPIView):
         CustomEnrollDrop.objects.all().delete()
 
         if not canenroll:
-            return Response({'Message: ': 'You already enrolled in all the valid occurence in this class'})
+            return Response({'Message: ': 'You already enrolled in all the valid occurence in this class'}, status=status.HTTP_400_BAD_REQUEST)
         return self.get_paginated_response(serializer.data)
 
 
