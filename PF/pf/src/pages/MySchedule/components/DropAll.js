@@ -1,7 +1,7 @@
 
 import axios from "axios";
 
-function DropAll(class_id){
+function DropAll(class_id, Refresh){
     let config1 = {
         headers: {
             'Authorization': "Bearer " + localStorage.getItem("token")
@@ -11,6 +11,7 @@ function DropAll(class_id){
     console.log(config1)
     const url = `http://localhost:8000/classes/${class_id}/dropall/`;
     axios.post(url,data,config1).then((res) => {
+        Refresh()
      });
 
 }

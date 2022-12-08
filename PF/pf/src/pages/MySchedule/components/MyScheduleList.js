@@ -35,10 +35,10 @@ function MyScheduleList(props) {
                             <td key={'active' + index}>{info['is_active']}</td>
                             <td key={'status' + index}>{info['status']}</td>
                             <td>
-                                <Button variant="danger" onClick={() => Drop(info['recurrence_id'])}>Drop</Button>{' '}
+                                <Button variant="danger" onClick={() => Drop(info['recurrence_id'], props.setRefresh)}>Drop</Button>{' '}
                             </td>
                             <td>
-                                <Button variant="danger" onClick={() => DropAll(info['class_id'])}>Drop All Classes</Button>{' '}
+                                <Button variant="danger" onClick={() => DropAll(info['class_id'], props.setRefresh)}>Drop All Classes</Button>{' '}
 
                             </td>
                         </tr>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import axios from 'axios'
 import MyScheduleList from './components/MyScheduleList.js'
@@ -41,7 +41,19 @@ function MySchedule() {
         }).catch((error) => {
             if(error.response.status === 403){
                 setSubscribe(false)
-            }else{
+            } else if (error.response.status === 401) {
+                console.log('401')
+                navigate('/')
+            } else if (error.response.status === 404) {
+                return(
+                    <>
+                        <h1>
+                            You are not registered for any classes
+                        </h1>
+                    </>
+                )
+            }
+            else{
                 setUnknown(true)
             }
         });
@@ -73,12 +85,12 @@ function MySchedule() {
             <br/>
             <br/>
             <div className="button">
-                <Button class="Primary" size="sm" onClick={() => setRefresh(refresh + 1)} >Refresh</Button>{' '}
-                <Button  class="Primary" size="sm" onClick={() => setPage(page - 1) }  disabled={previous === false}>Previous</Button>{' '}
-                <Button class="Primary" size="sm" onClick={() => setPage(page + 1) }  disabled={next === false}>Next</Button>{' '}
+                <Button className="Primary" size="sm" onClick={() => setRefresh(refresh + 1)} >Refresh</Button>{' '}
+                <Button  className="Primary" size="sm" onClick={() => setPage(page - 1) }  disabled={previous === false}>Previous</Button>{' '}
+                <Button className="Primary" size="sm" onClick={() => setPage(page + 1) }  disabled={next === false}>Next</Button>{' '}
             </div>
 
-            <MyScheduleList myschedulelist={[schedule,config]}/>
+            <MyScheduleList myschedulelist={[schedule,config]} setRefresh={() => setRefresh(refresh + 1)}/>
 
         </>
     )
@@ -94,8 +106,8 @@ function MySchedule() {
 
                 <div className="redirect">
                      <BootstrapButton variant="contained" onClick={() => navigate('/subscription')} >
-                    Subscription page
-        </BootstrapButton>
+                        Subscription page
+                    </BootstrapButton>
 
                 </div>
 
