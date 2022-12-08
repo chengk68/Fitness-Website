@@ -32,7 +32,6 @@ class EnrollView(APIView):
         timenow = datetime.now().time()
         classes = recurrence.targetclass
         starttime = classes.start
-        classname = recurrence.targetclass.name
         startt = datetime.combine(recurrence.date, recurrence.targetclass.start)
         endt = datetime.combine(recurrence.date, recurrence.targetclass.end)
         combine = str(startt) + " - " + str(endt)
@@ -46,6 +45,8 @@ class EnrollView(APIView):
                 else:
                     update = Enrollment.objects.get(enrolluser=request.user, enrollrecurrence=recurrence)
                     update.is_active = True
+                    recurrence.capacity = recurrence.capacity - 1
+                    recurrence.save()
                     update.save()
                     enroll = {}
                     enroll['ID'] = recurrence.id
