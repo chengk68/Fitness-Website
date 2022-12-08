@@ -219,7 +219,8 @@ class myschedule(generics.GenericAPIView):
     serializer_class = CustomScheduleSerializer
 
     def get(self, request):
-
+        if Profile.objects.get(user=request.user).is_subscribe == False:
+            return Response({"Message": "You do not have active subscription!!"}, status=status.HTTP_403_FORBIDDEN)
         if Enrollment.objects.filter(enrolluser=request.user).exists():
             allenroll = Enrollment.objects.all()
             userenroll = allenroll.filter(enrolluser=request.user).order_by('enrollrecurrence__date')
