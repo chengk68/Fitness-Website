@@ -21,7 +21,7 @@ function Signup() {
     padding: "30px 20px",
     width: 300,
     margin: "20px auto",
-    height: "80vh",
+    height: "90vh",
   };
   const tstyle = { margin: "20px 0" };
 
