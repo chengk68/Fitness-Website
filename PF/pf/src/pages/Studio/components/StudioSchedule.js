@@ -7,14 +7,17 @@ import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ScheduleForm from './ScheduleForm';
-import Enrollc from './Enroll';
+import Enroll from './Enroll';
 import EnrollAll from './EnrollAll';
+import { Navigate } from 'react-router-dom';
+
 function StudioSchedule(props) {
   const studioId = props.studioId;
   const hasNext = useRef(false);
   const hasPrev = useRef(false);
   const [params, setParams] = useState({page: 1, filters: {name: "", coach: "", start_date: "", end_date: "", start_time: "", end_time: ""}})
   const [classes, setClasses] = useState([]) 
+  const [loggedIn, setLoggedIn] = useState(true)
   var min_class = 0;
 
   useEffect(() => {
@@ -32,6 +35,9 @@ function StudioSchedule(props) {
   if (classes.length !== 0) {
     console.log(classes)
     min_class = classes[0]['id']
+  if (!loggedIn) {
+    return < Navigate to='/' replace={true} />
+  }
   }
 
   return (
@@ -103,11 +109,11 @@ function StudioSchedule(props) {
                       <tbody>
                         <tr>
                           <td>Enroll in this class:</td>
-                          <td><Button onClick={() => Enrollc(c['id'])}>Enroll</Button></td>
+                          <td><Button onClick={() => Enroll(c['id'], () => setLoggedIn(false))}>Enroll</Button></td>
                         </tr>
                         <tr>
                           <td>Enroll all future occurences of this class: :</td>
-                          <td><Button onClick={() => EnrollAll(c['targetclass']['class_id'])}>Enroll</Button></td>
+                          <td><Button onClick={() => EnrollAll(c['targetclass']['class_id'], () => setLoggedIn(false))}>Enroll</Button></td>
                         </tr>
                       </tbody>
                     </Table>
@@ -124,14 +130,6 @@ function StudioSchedule(props) {
     </div>
     </>
   )
-}
-
-function enrollAll(studioId) {
-  
-}
-
-function enroll() {
-
 }
 
 export default StudioSchedule
