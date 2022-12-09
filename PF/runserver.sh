@@ -1,4 +1,2 @@
 #! /bin/sh
-cd PB
-source runserver.sh
-cd ..
+source runserver_PB.sh & source runserver_PF.sh &
