@@ -111,57 +111,10 @@ function MySchedule() {
                 <div className="error">
                     <h1>You do not have an active subscription. Please subscribe first!!</h1>
                 </div>
-
-                <div className="redirect">
-                     <BootstrapButton variant="contained" onClick={() => navigate('/subscription')} >Subscriptions</BootstrapButton>
-
-                </div>
-
-
             </>
         )
     }
 
 }
-
-//reference https://mui.com/material-ui/react-button/
-const BootstrapButton = styled(Button)({
-  boxShadow: 'none',
-  textTransform: 'none',
-  fontSize: 18,
-  padding: '1px 60px',
-  border: '1px solid',
-  lineHeight: 1,
-  backgroundColor: '#0063cc',
-  borderColor: '#0063cc',
-  maxWidth: "200px",
-  maxHeight: "150px",
-  height: "150px",
-  fontFamily: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    '"Segoe UI"',
-    'Roboto',
-    '"Helvetica Neue"',
-    'Arial',
-    'sans-serif',
-    '"Apple Color Emoji"',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"',
-  ].join(','),
-  '&:hover': {
-    backgroundColor: '#0069d9',
-    borderColor: '#0062cc',
-    boxShadow: 'none',
-  },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#0062cc',
-    borderColor: '#005cbf',
-  },
-  '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-  },
-});
 
 export default MySchedule
